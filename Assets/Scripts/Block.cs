@@ -8,7 +8,7 @@ public class Block : MonoBehaviour
     {
         Destructible,
         Indestructible,
-        Traversable
+        Traversed
     }
 
     public BlockType blockType = BlockType.Destructible;
@@ -19,11 +19,11 @@ public class Block : MonoBehaviour
     {
         get
         {
-            return blockType == BlockType.Traversable;
+            return blockType == BlockType.Traversed;
         }
     }
 
-    public bool isDestruible
+    public bool isDestructible
     {
         get
         {
@@ -48,6 +48,9 @@ public class Block : MonoBehaviour
         }
         set
         {
+            if (isIndestructible)
+                return;
+
             _lifes = value;
             if (_lifes == 0)
             {

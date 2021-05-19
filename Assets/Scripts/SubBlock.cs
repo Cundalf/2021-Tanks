@@ -6,17 +6,17 @@ public class SubBlock : MonoBehaviour
 {
     private Block parentBlock;
 
-    private void OnTriggerEnter(Collider other)
+    public void damage()
     {
-        if (parentBlock.isDestruible && other.CompareTag("Bullet"))
-        {
-            if (parentBlock.life > 0)
-            {
-                parentBlock.life -= 1;
-            }
+        if (parentBlock.isIndestructible)
+            return;
 
-            GameObject.Destroy(gameObject);
+        if (parentBlock.life > 0)
+        {
+            parentBlock.life -= 1;
         }
+
+        GameObject.Destroy(gameObject);
     }
 
     void Start()

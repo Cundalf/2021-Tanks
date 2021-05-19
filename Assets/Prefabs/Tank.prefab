@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602140885187902105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 6830034055149591980}
   - component: {fileID: 6830034055149591983}
   - component: {fileID: 697095161040298840}
-  m_Layer: 0
+  - component: {fileID: 611507099301459001}
+  m_Layer: 6
   m_Name: Tank
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -92,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7206914, y: 1.9092358, z: 2.2358847}
-  m_Center: {x: -0.0022894144, y: 0.940069, z: -0.0051879883}
+  m_Size: {x: 1.6235204, y: 1.9215692, z: 2.1808982}
+  m_Center: {x: 0.00040984154, y: 0.9339023, z: -0.032681167}
 --- !u!114 &6830034055149591983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linealVelocity: 6
   rotationVelocity: 4
+  movementSound: {fileID: 8300000, guid: d7ca9fb5aa30155449192b23d7fb3336, type: 3}
+  idleSound: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
+  pitchMinMax: {x: 1, y: 1.4}
 --- !u!114 &697095161040298840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,9 +127,105 @@ MonoBehaviour:
   tankTurret: {fileID: 6830034055351236377}
   prefabBullet: {fileID: 6214082280527800992, guid: 2726695b67096564d8de38cb4250ecca, type: 3}
   bulletOrigin: {fileID: 1602140885187902105}
-  bulletPower: 12.5
-  velocity: 90
+  bulletPower: 12
   fireCooldown: 1
+  turrentRotationSpeed: 3
+--- !u!82 &611507099301459001
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830034055350741745}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1524454924441906966, guid: d01d071f83ac4ae479dc07ca1b02391f, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6830034055350741747
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +237,7 @@ GameObject:
   - component: {fileID: 6830034055351236371}
   - component: {fileID: 6830034055354103617}
   - component: {fileID: 6830034055353005441}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankChassis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +320,7 @@ GameObject:
   - component: {fileID: 6830034055351236373}
   - component: {fileID: 6830034055354103623}
   - component: {fileID: 6830034055353005447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankTracksLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +402,7 @@ GameObject:
   - component: {fileID: 6830034055351236375}
   - component: {fileID: 6830034055354103625}
   - component: {fileID: 6830034055353005449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankTracksRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +484,7 @@ GameObject:
   - component: {fileID: 6830034055351236377}
   - component: {fileID: 6830034055354103619}
   - component: {fileID: 6830034055353005443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6830034055351236381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankRenderers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

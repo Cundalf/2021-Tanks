@@ -11,15 +11,15 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private float bulletPower = 1.0f;
     [SerializeField]
-    private float velocity = 1.0f;
-    [SerializeField]
     private float fireCooldown = 0.1f;
+    [SerializeField]
+    private float turrentRotationSpeed = 1.0f;
 
-
-    private float t;
     private bool f;
     private bool canFire = true;
     private GameObject bullet;
+    private Camera playerCamera;
+    private Quaternion rotationObj;
 
     void CancelarCoolDown()
     {
@@ -30,14 +30,28 @@ public class Turret : MonoBehaviour
     {
         bullet = GameObject.Instantiate(prefabBullet, bulletOrigin.position, bulletOrigin.rotation);
         bullet.SetActive(false);
+        playerCamera = GameObject.Find("Camera").GetComponent<Camera>();
     }
 
     void Update()
     {
-        t = Input.GetAxis("Turret");
+        Ray rayPicking = playerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        int mask = (1 << LayerMask.NameToLayer("Ground"));
+        bool hasCollision = Physics.Raycast(rayPicking, out hit, 100.0f, mask);
+
+        if(hasCollision)
+        {
+            Vector3 dir = (hit.point - tankTurret.position);
+            dir.y = 0.0f;
+            dir.Normalize();
+            Debug.Log($"Direccion {dir}");
+            rotationObj = Quaternion.LookRotation(dir, Vector3.up);
+        }
+
         f = Input.GetButtonDown("Fire1");
 
-        //if (f && !bala.active)
         if (f && canFire)
         {
             canFire = false;
@@ -56,6 +70,6 @@ public class Turret : MonoBehaviour
 
     private void FixedUpdate()
     {
-        tankTurret.Rotate(transform.up, t * velocity * Time.fixedDeltaTime);
+        tankTurret.rotation = Quaternion.Slerp(tankTurret.rotation, rotationObj, turrentRotationSpeed * Time.fixedDeltaTime);
     }
 }
